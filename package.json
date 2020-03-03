@@ -1,0 +1,28 @@
+{
+  "name": "eden-bot",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/register": "latest",
+    "@babel/preset-env": "^7.8.6",
+    "node-telegram-bot-api": "latest",
+    "pureimage": "latest",
+    "select-random-file": "^1.1.0"
+  },
+  "description": "",
+  "main": "start.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michele-mogul/eden-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michele-mogul/eden-bot/issues"
+  },
+  "homepage": "https://github.com/michele-mogul/eden-bot#readme"
+}
