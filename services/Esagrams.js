@@ -122,7 +122,7 @@ export default class Esagrams extends AbstractService{
 
                 let png = `out${name}.png`;
                 PImage.encodePNGToStream(img1, fs.createWriteStream(png)).then(() => {
-                    self.bot.sendPhoto(msg.chat.id, png).then(() => {
+                    bot.sendPhoto(msg.chat.id, png).then(() => {
                         fs.unlink(png, (err) => {
                             if (err) throw err
                         })
