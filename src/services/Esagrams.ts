@@ -76,7 +76,7 @@ export default class Esagrams extends AbstractService{
     }
 
     static esagramExtraction(bot: Bot) {
-        bot.onText(/\/esagramma/, (msg) => {
+        bot.onText(/\/esagramma/, (msg: Message) => {
             let PImage = require('pureimage'),
                 yImage = 400,
                 xImage = 400,
@@ -112,7 +112,7 @@ export default class Esagrams extends AbstractService{
             let chingName = exagramMapping[name].number + ": " + exagramMapping[name].name;
             let fnt = PImage.registerFont(__dirname + '/fonts/t-masterout.ttf', 'Source Sans Pro');
 
-            fnt.load().then(() => {
+            fnt.load(() => {
                 try{
                     ctx.font = "36pt 'Source Sans Pro'";
                     ctx.fillStyle = '#000';
