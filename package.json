@@ -13,14 +13,16 @@
     "copy-static-assets": "ts-node copyStaticAssets.ts"
   },
   "dependencies": {
+    "@types/express": "^4.17.2",
+    "express": "latest",
     "node-telegram-bot-api": "latest",
     "pureimage": "latest",
-    "typescript": "^3.8.3",
-    "tslint": "^6.0.0",
-    "tsc": "latest",
     "select-random-file": "^1.1.0",
+    "shelljs": "latest",
     "ts-node": "^8.6.2",
-    "shelljs": "latest"
+    "tsc": "latest",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.3"
   },
   "description": "",
   "main": "start.js",
