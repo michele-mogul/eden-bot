@@ -1,4 +1,4 @@
-import Tarrot from "./services/Tarrot";
+import Tarrot from "./services/Tarot";
 import Esagrams from "./services/Esagrams";
 const TelegramBot = require('node-telegram-bot-api');
 

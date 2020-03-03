@@ -4,7 +4,7 @@ require("@babel/register")({
 });
 
 module.exports = require('./services/AbstractService.js');
-module.exports = require('./services/Tarrot.js');
+module.exports = require('./services/Tarot.js');
 module.exports = require('./services/Esagrams.js');
 module.exports = require('./node-start.js');
 console.log("Server Started");

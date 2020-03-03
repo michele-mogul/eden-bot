@@ -2,14 +2,14 @@ import AbstractService from './AbstractService';
 const randomFile = require('select-random-file');
 
 
-export default class Tarrot extends  AbstractService{
+export default class Tarot extends  AbstractService{
     static init (bot){
         super.init(bot);
         bot.onText(/\/tarocco/, (msg) => {
-            Tarrot._extractTarot(bot, msg);
+            Tarot._extractTarot(bot, msg);
         });
         bot.onText(/\/start/, (msg) => {
-            Tarrot._extractTarot(bot, msg);
+            Tarot._extractTarot(bot, msg);
         });
     }
 
