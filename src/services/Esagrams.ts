@@ -77,40 +77,42 @@ export default class Esagrams extends AbstractService{
 
     static esagramExtraction(bot) {
         bot.onText(/\/esagramma/, (msg) => {
-            let PImage = require('pureimage');
-            let yImage = 400;
-            let xImage = 400;
-            let img1 = PImage.make(xImage, yImage);
-            let ctx = img1.getContext('2d');
+            let PImage = require('pureimage'),
+                yImage = 400,
+                xImage = 400,
+                img1 = PImage.make(xImage, yImage),
+                ctx = img1.getContext('2d'),
+                startX = 0,
+                endX = 400;
+
             ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, 400, 400);
 
-            let startX = 0;
-            let endX = 400;
-
             const thick = 15;
             const xMultiplier = yImage / 7.5;
-            var name = "";
+            let name = "";
             for (let lines = 1; lines <= 6; lines++) {
-                let effectiveY = xMultiplier * lines;
-                let number = Math.round((Math.random() * (9 - 6) + 6));
-                let coin = number % 2 !== 0;
-                name = name + Math.round(coin);
+                let effectiveY = xMultiplier * lines,
+                    number = Math.round((Math.random() * (9 - 6) + 6)),
+                    coin = number % 2 !== 0;
+
+                name = name + Math.round(Number(coin));
                 for (let i = 0; i < thick; i++) {
                     if (!coin) {
                         ctx.drawLine(new Line(startX, effectiveY + i, endX, effectiveY + i));
                     } else {
-                        let partialOneEnd = endX / 2 - endX / 8;
-                        let partialTwoStart = endX / 2 + endX / 8;
+                        let partialOneEnd = endX / 2 - endX / 8,
+                            partialTwoStart = endX / 2 + endX / 8;
+
                         ctx.drawLine(new Line(startX, effectiveY + i, partialOneEnd, effectiveY + i));
                         ctx.drawLine(new Line(partialTwoStart, effectiveY + i, endX, effectiveY + i));
                     }
                 }
             }
-            var chingName = exagramMapping[name].number + ": " + exagramMapping[name].name;
+            let chingName = exagramMapping[name].number + ": " + exagramMapping[name].name;
+            let fnt = PImage.registerFont(__dirname + '/fonts/t-masterout.ttf', 'Source Sans Pro');
 
-            var fnt = PImage.registerFont( __dirname + '/fonts/t-masterout.ttf','Source Sans Pro');
-            fnt.load(() => {
+            fnt.load().then(() => {
                 try{
                     ctx.font = "36pt 'Source Sans Pro'";
                     ctx.fillStyle = '#000';

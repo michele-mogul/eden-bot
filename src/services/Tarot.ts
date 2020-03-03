@@ -1,5 +1,5 @@
 import AbstractService from './AbstractService';
-const randomFile = require('select-random-file');
+import randomFile = require('select-random-file');
 
 
 export default class Tarot extends  AbstractService{
