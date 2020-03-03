@@ -1,7 +1,7 @@
 import AbstractService from "./AbstractService";
 const fs         = require('fs');
 const Line  = require('pureimage/src/Line.js');
-const exagramMapping = {
+const exagramMapping: EsagramsMapping = {
     "111111" :{name:"Ch'ien", number:"1"},
     "000000" :{name:"K'un", number:"2"},
     "010001" :{name:"Chun", number:"3"},
@@ -70,12 +70,12 @@ const exagramMapping = {
 
 export default class Esagrams extends AbstractService{
 
-    static init (bot){
+    static init (bot: Bot){
         super.init(bot);
         Esagrams.esagramExtraction(bot);
     }
 
-    static esagramExtraction(bot) {
+    static esagramExtraction(bot: Bot) {
         bot.onText(/\/esagramma/, (msg) => {
             let PImage = require('pureimage'),
                 yImage = 400,
@@ -125,11 +125,11 @@ export default class Esagrams extends AbstractService{
                 let png = `out${name}.png`;
                 PImage.encodePNGToStream(img1, fs.createWriteStream(png)).then(() => {
                     bot.sendPhoto(msg.chat.id, png).then(() => {
-                        fs.unlink(png, (err) => {
+                        fs.unlink(png, (err: any) => {
                             if (err) throw err
                         })
                     });
-                }).catch((e) => {
+                }).catch((e: any) => {
                     console.log(e);
                 });
             });
