@@ -25,7 +25,7 @@
     "typescript": "^3.8.3"
   },
   "description": "",
-  "main": "start.js",
+  "main": "dist/server.js",
   "devDependencies": {
     "@types/node": "^13.7.7",
     "@types/node-telegram-bot-api": "^0.40.2",
