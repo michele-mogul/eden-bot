@@ -1,4 +1,4 @@
-import AbstractService from "./AbstractService";
+import TelegramBot from "node-telegram-bot-api";
 const fs         = require('fs');
 const Line  = require('pureimage/src/Line.js');
 const exagramMapping: EsagramsMapping = {
@@ -68,14 +68,13 @@ const exagramMapping: EsagramsMapping = {
     "101010" :{name:"Wei Chi", number:"64"}
 }
 
-export default class Esagrams extends AbstractService{
+export default class Esagrams {
 
-    static init (bot: Bot){
-        super.init(bot);
+    static init (bot: TelegramBot){
         Esagrams.esagramExtraction(bot);
     }
 
-    static esagramExtraction(bot: Bot) {
+    static esagramExtraction(bot: TelegramBot) {
         bot.onText(/\/esagramma/, (msg: Message) => {
             let PImage = require('pureimage'),
                 yImage = 400,

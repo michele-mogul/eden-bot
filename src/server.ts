@@ -1,26 +1,48 @@
 import Tarrot from "./services/Tarot";
 import Esagrams from "./services/Esagrams";
 import TelegramBot from "node-telegram-bot-api";
-import express from "express";
-import path from "path";
-import http from "http";
 
-// replace the value below with the Telegram token you receive from @BotFather
+
+const url = process.env.BOT_WEBHOOK ||  false;
+const token = process.env.TELEGRAM_KEY || false;
+const port = process.env.PORT || false;
+
+if(!url || !token || !port ){
+    console.error("BOT_WEBHOOK, PORT and TELEGRAM_KEY must be set in process env");
+    process.exit(1);
+}
+
+const options = {
+    webHook: {
+        port: port
+    }
+};
 // @ts-ignore
-const token = process.env.TELEGRAM_KEY || "";
-const bot = new TelegramBot(token, { polling: true });
-
-Esagrams.init(bot);
-Tarrot.init(bot);
+const bot = new TelegramBot(token, options);
 
 
-const app = express();
-const server = new http.Server(app);
+// This informs the Telegram servers of the new webhook.
+// Note: we do not need to pass in the cert, as it already provided
+bot.setWebHook(`${url}/bot${token}`).then((() => {
+    Esagrams.init(bot);
+    Tarrot.init(bot);
+}));
 
-const port = process.env.PORT || 8080;
 
-app.use('/', express.static(path.join(__dirname, 'testheroku')));
+process
+    .on('SIGTERM', shutdown('SIGTERM'))
+    .on('SIGINT', shutdown('SIGINT'))
+    .on('uncaughtException', shutdown('uncaughtException'));
 
-server.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}/`);
-});
+setInterval(console.log.bind(console, 'tick'), 15000);
+
+function shutdown(signal: string) {
+    return (err: any) => {
+        console.log(`${ signal }...`);
+        if (err) console.error(err.stack || err);
+        setTimeout(() => {
+            console.log('...waited 5s, exiting.');
+            process.exit(err ? 1 : 0);
+        }, 5000).unref();
+    };
+}

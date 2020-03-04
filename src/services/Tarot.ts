@@ -1,11 +1,8 @@
-import AbstractService from './AbstractService';
 // @ts-ignore
 import randomFile = require('select-random-file');
 
-
-export default class Tarot extends  AbstractService{
+export default class Tarot {
     static init (bot: Bot){
-        super.init(bot);
         bot.onText(/\/tarocco/, (msg: Message) => {
             Tarot._extractTarot(bot, msg);
         });
