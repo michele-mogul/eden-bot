@@ -12,21 +12,28 @@ if(!url || !token || !port ){
     process.exit(1);
 }
 
-const options = {
-    webHook: {
-        port: port
-    }
-};
-// @ts-ignore
-const bot = new TelegramBot(token, options);
+if(process.env.PRODUCTION){
+    const options = {
+        webHook: {
+            port: port
+        }
+    };
 
+    // @ts-ignore
+    const bot = new TelegramBot(token, options);
+    // This informs the Telegram servers of the new webhook.
+    bot.setWebHook(`${url}/bot${token}`).then((() => {
+        // Note: we do not need to pass in the cert, as it already provided
+        Esagrams.init(bot);
+        Tarrot.init(bot);
+    }));
 
-// This informs the Telegram servers of the new webhook.
-// Note: we do not need to pass in the cert, as it already provided
-bot.setWebHook(`${url}/bot${token}`).then((() => {
+} else {
+    const token = process.env.TELEGRAM_KEY || "";
+    const bot = new TelegramBot(token, { polling: true });
     Esagrams.init(bot);
     Tarrot.init(bot);
-}));
+}
 
 
 process
