@@ -1,6 +1,6 @@
 {
   "name": "eden-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "build-ts": "tsc",
     "build": " npm run build-ts  && npm run copy-static-assets",
