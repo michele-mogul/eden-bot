@@ -1,6 +1,6 @@
 import Tarrot from "./services/Tarot";
 import Esagrams from "./services/Esagrams";
-import TelegramBot from "node-telegram-bot-api";
+import * as TelegramBot from 'node-telegram-bot-api';
 
 
 const url = process.env.BOT_WEBHOOK ||  false;
