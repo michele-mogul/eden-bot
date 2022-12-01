@@ -3,12 +3,10 @@ import Esagrams from "./services/Esagrams";
 import * as TelegramBot from 'node-telegram-bot-api';
 
 
-const url = process.env.BOT_WEBHOOK ||  false;
 const token = process.env.TELEGRAM_KEY || false;
-const port = process.env.PORT || false;
 
-if(!url || !token || !port ){
-    console.error("BOT_WEBHOOK, PORT and TELEGRAM_KEY must be set in process env");
+if(!token ){
+    console.error("TELEGRAM_KEY must be set in process env");
     process.exit(1);
 }
 
