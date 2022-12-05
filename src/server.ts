@@ -1,6 +1,7 @@
+require('dotenv').config()
+
 import Tarrot from "./services/Tarot";
 import * as TelegramBot from 'node-telegram-bot-api';
-
 
 const token = process.env.TELEGRAM_KEY || false;
 
