@@ -1,5 +1,4 @@
 import Tarrot from "./services/Tarot";
-import Esagrams from "./services/Esagrams";
 import * as TelegramBot from 'node-telegram-bot-api';
 
 
@@ -16,10 +15,7 @@ const options = {
 // @ts-ignore
 const bot = new TelegramBot(token, options);
 
-
-Esagrams.init(bot);
 Tarrot.init(bot);
-
 
 
 process
